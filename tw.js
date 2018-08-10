@@ -1,4 +1,6 @@
 //oAuth oauth:cfbmuc4giaotbwpvwvv3mbu309o3ay
+
+
 const tmi = require('tmi.js')
 
 // Valid commands start with:
