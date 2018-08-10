@@ -1,6 +1,15 @@
 //oAuth oauth:cfbmuc4giaotbwpvwvv3mbu309o3ay
 //might want to checkout play-sound module
 //https://www.npmjs.com/package/play-sound
+/**   To-Do:
+ * 
+ *  -Add Interface/Design
+ *  -Add AudioPlayback
+ *  -Improve Code
+ *  -Add Fail Message Response
+ * 
+ **/
+
 
 const tmi = require('tmi.js')
 
