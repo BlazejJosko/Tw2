@@ -6,11 +6,11 @@ let commandPrefix = '!'
 // Define configuration options:
 let opts = {
   identity: {
-    username: ScareBot,
-    password: 'oauth:' + cfbmuc4giaotbwpvwvv3mbu309o3ay
+    username: 'theblazej',
+    password: 'oauth:' + 'cfbmuc4giaotbwpvwvv3mbu309o3ay'
   },
   channels: [
-    theblazej
+    'theblazej'
   ]
 }
 
