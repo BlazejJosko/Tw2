@@ -1,4 +1,7 @@
 //oAuth oauth:cfbmuc4giaotbwpvwvv3mbu309o3ay
+//might want to checkout play-sound module
+//https://www.npmjs.com/package/play-sound
+
 const tmi = require('tmi.js')
 
 // Valid commands start with:
@@ -31,9 +34,19 @@ function echo (target, context, params) {
 }
 
 // Function called when the "scare" command is issued:
-function scare (target, context) {
-    const msg = `Hihih he got scared.`
-    sendMessage(target, context. msg)
+function scare (target, context, params) {
+  if (!params.length){
+    const msg = `Scare Sound sofort abgespielt`
+    sendMessage(target, context, msg)
+
+    //code zum Abspielen der Sound-Datei
+  } else if(params >= 1 && params <= 500){
+    const msg = `Scare Sound wird in ${params} Sekunden abgespielt`
+    sendMessage(target, context, msg)
+  } else{
+    console.log(`* Can't scare... parameter of Scare has to be inbetween 1-500`)
+  }
+
 }
 
 // Helper function to send the correct type of message:
