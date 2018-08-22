@@ -100,6 +100,9 @@ setInterval(() => {
 if(reduceDelayBool == true) delay--;
 if(delay == 0) reduceDelayBool = false;
 },1000)
+
+
+
 /**
  * 
  * HELPER FUNCTION
