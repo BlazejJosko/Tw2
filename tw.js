@@ -9,8 +9,9 @@
  *  -Add Fail Message Response
  * 
  **/
-
-
+//Sound player
+const player = require('play-sound)();
+//Twitter API Node.js Module
 const tmi = require('tmi.js')
 
 // Valid commands start with:
