@@ -81,7 +81,7 @@ function playScare(delay){
   var min = 1;
   // ließt die Anzahl der Datein im Ordner
   fs.readdir(__dirname + "/sound", (err, files) => {
-    files.forEach(file => {
+    files.forEach( () => {
       max ++;
     })
   })
