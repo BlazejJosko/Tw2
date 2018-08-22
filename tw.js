@@ -23,6 +23,7 @@ var botName = "theblazej";
 var joinMessage = "☜(ﾟヮﾟ☜) Hi, It's me (☞ﾟヮﾟ)☞";
 var channel = "theblazej";
 var delay = 0;
+var reduceDelayBool = false;
 
 
 // Valid commands start with:
@@ -61,8 +62,9 @@ function scare (target, context, params) {
       console.log(`* Can't scare... parameter of Scare has to be inbetween 1-500`)
     }
     delay = 500;
+    reduceDelayBool = true;
   } else {
-    const msg = `Sorry too soon. This command can be executet in ${delay} seconds`;
+    const msg = `Sorry too soon. This command can be executed in ${delay} seconds`;
     sendMessage(target, context, msg);
   }
 }
@@ -94,10 +96,10 @@ function playScare(delay){
 }
 
 //Dealy Function
-setTimeout(() => {
-  delay -1;
-},100)
-
+setInterval(() => {
+if(reduceDelayBool == true) delay--;
+if(delay == 0) reduceDelayBool = false;
+},1000)
 /**
  * 
  * HELPER FUNCTION
