@@ -17,17 +17,21 @@ const player = require('play-sound')();
 const tmi = require('tmi.js')
 
 
+var botName = "theblazej";
+var joinMessage = "(☞ﾟヮﾟ)☞ Hi, It's me ☜(ﾟヮﾟ☜)";
+var channel = "theblazej";
+
 
 // Valid commands start with:
 let commandPrefix = '!'
 // Define configuration options:
 let opts = {
   identity: {
-    username: 'theblazej',
+    username: botName,
     password: 'oauth:' + 'cfbmuc4giaotbwpvwvv3mbu309o3ay'
   },
   channels: [
-    'theblazej'
+    channel
   ]
 }
 
@@ -123,7 +127,7 @@ function onMessageHandler (target, context, msg, self) {
 // Called every time the bot connects to Twitch chat:
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`)
-  sendMessage("theblazej", "", "Hi ( ͡° ͜ʖ ͡°)");
+  sendMessage(botName, "", joinMessage);
 }
 // Called every time the bot disconnects from Twitch:
 function onDisconnectedHandler (reason) {
