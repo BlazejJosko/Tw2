@@ -41,7 +41,7 @@ function scare (target, context, params) {
     sendMessage(target, context, msg)
     playScare(params);
     //code zum Abspielen der Sound-Datei
-  } else if(params >= 1 && params <= 500){
+  } else if(params >= 0 && params <= 500){
     const msg = `Scare Sound wird in ${params} Sekunden abgespielt`
     sendMessage(target, context, msg)
     playScare(params);
