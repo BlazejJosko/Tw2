@@ -16,7 +16,7 @@ const player = require('play-sound')();
 //Twitter API Node.js Module
 const tmi = require('tmi.js')
 
-
+//Variables for Interface implementation
 var botName = "theblazej";
 var joinMessage = "(☞ﾟヮﾟ)☞ Hi, It's me ☜(ﾟヮﾟ☜)";
 var channel = "theblazej";
@@ -34,7 +34,11 @@ let opts = {
     channel
   ]
 }
-
+/**
+ * 
+ *  CUSTOM COMMANDS
+ * 
+ */
 // These are the commands the bot knows (defined below):
 let knownCommands = { scare }
 
@@ -54,6 +58,12 @@ function scare (target, context, params) {
   }
 
 }
+
+/**
+ * 
+ *  CUSTOM FUNCTIONS
+ * 
+ */
 
 function playScare(delay){
   //Vielleicht Auslagerung Nötig bei zu vielen Datein
@@ -75,6 +85,11 @@ function playScare(delay){
   }, delay * 1000);
 }
 
+/**
+ * 
+ * HELPER FUNCTION
+ * 
+ */
 // Helper function to send the correct type of message:
 function sendMessage (target, context, message) {
   if (context['message-type'] === 'whisper') {
@@ -84,9 +99,15 @@ function sendMessage (target, context, message) {
   }
 }
 
+
 // Create a client with our options:
 let client = new tmi.client(opts)
 
+/**
+ * 
+ *  REGISTER EVENT HANDLERS
+ * 
+ */
 // Register our event handlers (defined below):
 client.on('message', onMessageHandler)
 client.on('connected', onConnectedHandler)
@@ -95,6 +116,11 @@ client.on('disconnected', onDisconnectedHandler)
 // Connect to Twitch:
 client.connect()
 
+/**
+ * 
+ *  EVENT HANDLERS
+ * 
+ */
 // Called every time a message comes in:
 function onMessageHandler (target, context, msg, self) {
   if (self) { return } // Ignore messages from the bot
@@ -127,7 +153,7 @@ function onMessageHandler (target, context, msg, self) {
 // Called every time the bot connects to Twitch chat:
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`)
-  sendMessage(botName, "", joinMessage);
+  client.say(botName, joinMessage);
 }
 // Called every time the bot disconnects from Twitch:
 function onDisconnectedHandler (reason) {
