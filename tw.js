@@ -123,8 +123,8 @@ function onMessageHandler (target, context, msg, self) {
 // Called every time the bot connects to Twitch chat:
 function onConnectedHandler (addr, port) {
   console.log(`* Connected to ${addr}:${port}`)
+  sendMessage("theblazej", "", "Hi ( ͡° ͜ʖ ͡°)");
 }
-
 // Called every time the bot disconnects from Twitch:
 function onDisconnectedHandler (reason) {
   console.log(`Disconnected: ${reason}`)
