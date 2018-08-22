@@ -4,7 +4,7 @@
 /**   To-Do:
  * 
  *  -Add Interface/Design
- *  -Add AudioPlayback
+ *  -Add Timeout for scare command
  *  -Improve Code
  *  -Add Fail Message Response
  * 
@@ -32,20 +32,7 @@ let opts = {
 }
 
 // These are the commands the bot knows (defined below):
-let knownCommands = { echo, scare }
-
-// Function called when the "echo" command is issued:
-function echo (target, context, params) {
-  // If there's something to echo:
-  if (params.length) {
-    // Join the params into a string:
-    const msg = params.join(' ')
-    // Send it back to the correct place:
-    sendMessage(target, context, msg)
-  } else { // Nothing to echo
-    console.log(`* Nothing to echo`)
-  }
-}
+let knownCommands = { scare }
 
 // Function called when the "scare" command is issued:
 function scare (target, context, params) {
@@ -65,8 +52,10 @@ function scare (target, context, params) {
 }
 
 function playScare(delay){
-  var max;
-  var min;
+  //Vielleicht Auslagerung Nötig bei zu vielen Datein
+  var max = 0;
+  var min = 1;
+  // ließt die Anzahl der Datein im Ordner
   fs.readdir(__dirname + "/sound", (err, files) => {
     files.forEach(file => {
       max ++;
