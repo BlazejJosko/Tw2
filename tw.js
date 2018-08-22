@@ -16,11 +16,15 @@ const player = require('play-sound')();
 //Twitter API Node.js Module
 const tmi = require('tmi.js')
 
+
+
 //Variables for Interface implementation
 var botName = "theblazej";
 var joinMessage = "☜(ﾟヮﾟ☜) Hi, It's me (☞ﾟヮﾟ)☞";
 var channel = "theblazej";
 var delay = 0;
+
+
 // Valid commands start with:
 let commandPrefix = '!'
 // Define configuration options:
@@ -58,7 +62,7 @@ function scare (target, context, params) {
     }
     delay = 500;
   } else {
-    const msg = "Sorry too soon";
+    const msg = `Sorry too soon. This command can be executet in ${delay} seconds`;
     sendMessage(target, context, msg);
   }
 }
