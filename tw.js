@@ -4,7 +4,7 @@
 /**   To-Do:
  * 
  *  -Add Interface/Design
- *  -Add Timeout for scare command
+ *  -Add Timeout per Person for scare command
  *  -Improve Code
  *  -Add Fail Message Response
  * 
@@ -18,10 +18,9 @@ const tmi = require('tmi.js')
 
 //Variables for Interface implementation
 var botName = "theblazej";
-var joinMessage = "(☞ﾟヮﾟ)☞ Hi, It's me ☜(ﾟヮﾟ☜)";
+var joinMessage = "☜(ﾟヮﾟ☜) Hi, It's me (☞ﾟヮﾟ)☞";
 var channel = "theblazej";
-
-
+var delay = 0;
 // Valid commands start with:
 let commandPrefix = '!'
 // Define configuration options:
@@ -44,19 +43,24 @@ let knownCommands = { scare }
 
 // Function called when the "scare" command is issued:
 function scare (target, context, params) {
-  if (!params.length){
-    const msg = `Scare Sound sofort abgespielt`
-    sendMessage(target, context, msg)
-    playScare(params);
-    //code zum Abspielen der Sound-Datei
-  } else if(params >= 0 && params <= 500){
-    const msg = `Scare Sound wird in ${params} Sekunden abgespielt`
-    sendMessage(target, context, msg)
-    playScare(params);
-  } else{
-    console.log(`* Can't scare... parameter of Scare has to be inbetween 1-500`)
+  if(delay <= 0){
+    if (!params.length){
+      const msg = `Scare Sound sofort abgespielt`
+      sendMessage(target, context, msg)
+      playScare(params);
+      //code zum Abspielen der Sound-Datei
+    } else if(params >= 0 && params <= 500){
+      const msg = `Scare Sound wird in ${params} Sekunden abgespielt`
+      sendMessage(target, context, msg)
+      playScare(params);
+    } else{
+      console.log(`* Can't scare... parameter of Scare has to be inbetween 1-500`)
+    }
+    delay = 500;
+  } else {
+    const msg = "Sorry too soon";
+    sendMessage(target, context, msg);
   }
-
 }
 
 /**
@@ -64,7 +68,7 @@ function scare (target, context, params) {
  *  CUSTOM FUNCTIONS
  * 
  */
-
+//playScareSound function
 function playScare(delay){
   //Vielleicht Auslagerung Nötig bei zu vielen Datein
   var max = 0;
@@ -84,6 +88,11 @@ function playScare(delay){
     });
   }, delay * 1000);
 }
+
+//Dealy Function
+setTimeout(() => {
+  delay -1;
+},100)
 
 /**
  * 
