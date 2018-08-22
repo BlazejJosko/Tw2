@@ -22,8 +22,8 @@ const tmi = require('tmi.js')
 var botName = "theblazej";
 var joinMessage = "☜(ﾟヮﾟ☜) Hi, It's me (☞ﾟヮﾟ)☞";
 var channel = "theblazej";
-var delay = 0;
-var reduceDelayBool = false;
+var timeout = 0;
+var reduceTimeoutBool = false;
 
 
 // Valid commands start with:
@@ -48,7 +48,7 @@ let knownCommands = { scare }
 
 // Function called when the "scare" command is issued:
 function scare (target, context, params) {
-  if(delay <= 0){
+  if(timeout <= 0){
     if (!params.length){
       const msg = `Scare Sound sofort abgespielt`
       sendMessage(target, context, msg)
@@ -61,8 +61,8 @@ function scare (target, context, params) {
     } else{
       console.log(`* Can't scare... parameter of Scare has to be inbetween 1-500`)
     }
-    delay = 500;
-    reduceDelayBool = true;
+    timeout = 500;
+    reduceTimeoutBool = true;
   } else {
     const msg = `Sorry too soon. This command can be executed in ${delay} seconds`;
     sendMessage(target, context, msg);
@@ -97,8 +97,8 @@ function playScare(delay){
 
 //Dealy Function
 setInterval(() => {
-if(reduceDelayBool == true) delay--;
-if(delay == 0) reduceDelayBool = false;
+if(reduceTimeoutBool == true) timeout--;
+if(delay == 0) reduceTimeoutBool = false;
 },1000)
 
 
