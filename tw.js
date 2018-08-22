@@ -10,7 +10,7 @@
  * 
  **/
 //Sound player
-const player = require('play-sound)();
+const player = require('play-sound')();
 //Twitter API Node.js Module
 const tmi = require('tmi.js')
 
@@ -48,15 +48,29 @@ function scare (target, context, params) {
   if (!params.length){
     const msg = `Scare Sound sofort abgespielt`
     sendMessage(target, context, msg)
-
+    playScare(params);
     //code zum Abspielen der Sound-Datei
   } else if(params >= 1 && params <= 500){
     const msg = `Scare Sound wird in ${params} Sekunden abgespielt`
     sendMessage(target, context, msg)
+    playScare(params);
   } else{
     console.log(`* Can't scare... parameter of Scare has to be inbetween 1-500`)
   }
 
+}
+
+function playScare(delay){
+  var max = 2;
+  var min = 1;
+
+  if(delay === undefined) delay = 0;
+
+  setTimeout(()=>{
+    player.play(`./sound/${Math.floor(Math.random() * (max - min + 1)) + min}.mp3`, (err) => {
+      if(err) console.log("Could not play Sound: " + err);
+    });
+  }, delay * 1000);
 }
 
 // Helper function to send the correct type of message:
