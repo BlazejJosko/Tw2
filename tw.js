@@ -9,10 +9,14 @@
  *  -Add Fail Message Response
  * 
  **/
+//FileSystem
+const fs = require('fs');
 //Sound player
 const player = require('play-sound')();
 //Twitter API Node.js Module
 const tmi = require('tmi.js')
+
+
 
 // Valid commands start with:
 let commandPrefix = '!'
@@ -61,8 +65,13 @@ function scare (target, context, params) {
 }
 
 function playScare(delay){
-  var max = 2;
-  var min = 1;
+  var max;
+  var min;
+  fs.readdir(__dirname + "/sound", (err, files) => {
+    files.forEach(file => {
+      max ++;
+    })
+  })
 
   if(delay === undefined) delay = 0;
 
